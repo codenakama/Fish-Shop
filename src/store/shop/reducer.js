@@ -49,7 +49,8 @@ const initialState = Immutable({
     "torquigener"
   ],
   fishInBasket: [],
-  sellerState: "happy"
+  sellerState: "happy",
+  isCompatible: false
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -57,12 +58,14 @@ export default function reduce(state = initialState, action = {}) {
     case types.COMPATIBLE:
       return state.merge({
         fishInBasket: state.fishInBasket.concat(action.fish),
-        sellerState: "happy"
+        sellerState: "happy",
+        isCompatible: true
       });
 
     case types.NOT_COMPATIBLE:
       return state.merge({
-        sellerState: "worried"
+        sellerState: "worried",
+        isCompatible: false
       });
     case types.SHOP_FLOADED:
       return state.merge({
@@ -86,4 +89,8 @@ export function getFishInBasket(state) {
 
 export function getSellerState(state) {
   return state.shop.sellerState;
+}
+
+export function getLastCompatCheck(state) {
+  return state.shop.isCompatible;
 }

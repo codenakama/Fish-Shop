@@ -46,7 +46,13 @@ const Wrapper = styled.div`margin-bottom: 2em;`;
 class ShopScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      welcomeMessage:
+        "Hello. How can I help? We have some rare fish on display this week! " +
+        "I am here to help you make the right choices.",
+      errorMessage: "Error message here.",
+      successMessage: "Great choice!"
+    };
     autoBind(this);
   }
 
@@ -59,7 +65,7 @@ class ShopScreen extends Component {
   }
 
   render() {
-    const { fish, fishInBasket, sellerState } = this.props;
+    const { fish, fishInBasket, sellerState, isCompat } = this.props;
     return (
       <MainWrapper>
         <h1>The Fishop</h1>
@@ -68,7 +74,14 @@ class ShopScreen extends Component {
             {/*<TankList />*/}
           </Tank>
         </Link>
-        <Seller face={sellerState} />
+        <Seller
+          face={sellerState}
+          message={
+            sellerState === "happy" && isCompat
+              ? this.state.successMessage
+              : this.state.errorMessage
+          }
+        />
         <Wrapper style={{ textAlign: "right" }}>
           <Button>Buy Fish</Button>
         </Wrapper>
@@ -83,7 +96,8 @@ function mapStateToProps(state) {
   return {
     fish: shopSelectors.getFishForSale(state),
     fishInBasket: shopSelectors.getFishInBasket(state),
-    sellerState: shopSelectors.getSellerState(state)
+    sellerState: shopSelectors.getSellerState(state),
+    isCompat: shopSelectors.getLastCompatCheck(state)
   };
 }
 
