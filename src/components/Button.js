@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 
 const StyledButton = styled.a`
   color: #fff;
-  background-color: ${props => (props.isEnabled ? "lightseagreen" : "grey")};
+  background-color: ${props =>
+    props.isEnabled ? "lightseagreen" : "lightgrey"};
   padding: 1em 2em;
   opacity: 0.8;
   transition: opacity 0.5s ease;
@@ -17,12 +18,24 @@ const StyledButton = styled.a`
 `;
 
 class Button extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { isEnabled } = this.props;
-    return <StyledButton isEnabled={false} />;
+    return (
+      <StyledButton isEnabled={isEnabled}>
+        {this.props.children}
+      </StyledButton>
+    );
   }
 }
+
+Button.propTypes = {
+  onClick: PropTypes.func,
+  isEnabled: PropTypes.bool
+};
+
+Button.defaultProps = {
+  isEnabled: true,
+  onClick: console.log("clicked")
+};
+
+export default Button;

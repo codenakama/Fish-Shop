@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import autoBind from "react-autobind";
-import * as tankIcon from "../images/fish-bowl.svg";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
