@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import autoBind from "react-autobind";
 import { connect } from "react-redux";
-import * as shopSeelectors from "../store/shop/reducer";
+import * as shopSelectors from "../store/shop/reducer";
 import * as shopActions from "../store/shop/actions";
+import { Link } from "react-router";
 import Tank from "../components/Tank";
 import Seller from "../components/Seller";
 import styled from "styled-components";
+import List from "../components/List";
 
 const MainWrapper = styled.div`
   margin: 50px;
@@ -23,6 +25,23 @@ const TankList = styled.div`
   padding: 1em;
   margin-top: 1em;
 `;
+
+const Button = styled.a`
+  color: #fff;
+  background-color: lightseagreen;
+  padding: 1em 2em;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+`;
+
+const Wrapper = styled.div`margin-bottom: 2em;`;
+
 class ShopScreen extends Component {
   constructor(props) {
     super(props);
@@ -34,15 +53,24 @@ class ShopScreen extends Component {
 
   handleTankClick() {}
 
+  handleFishClicked(fish) {}
+
   render() {
     const { fish } = this.props;
     return (
       <MainWrapper>
         <h1>The Fishop</h1>
-        <Tank onClick={this.handleTankClick} count={10}>
-          {/*<TankList />*/}
-        </Tank>
+        <Link to="my-tank">
+          <Tank onClick={this.handleTankClick} count={10}>
+            {/*<TankList />*/}
+          </Tank>
+        </Link>
         <Seller />
+        <Wrapper style={{ textAlign: "right" }}>
+          <Button>Buy Fish</Button>
+        </Wrapper>
+
+        <List items={fish} onItemClick={this.handleFishClicked} />
       </MainWrapper>
     );
   }
@@ -50,7 +78,7 @@ class ShopScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    fish: shopSeelectors.getFishForSale(state)
+    fish: shopSelectors.getFishForSale(state)
   };
 }
 
