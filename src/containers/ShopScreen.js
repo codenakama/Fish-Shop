@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as shopSeelectors from "../store/shop/reducer";
 import * as shopActions from "../store/shop/actions";
 import Tank from "../components/Tank";
-
+import Seller from "../components/Seller";
 import styled from "styled-components";
 
 const MainWrapper = styled.div`
@@ -39,9 +39,10 @@ class ShopScreen extends Component {
     return (
       <MainWrapper>
         <h1>The Fishop</h1>
-        <Tank onClick={this.handleTankClick}>
-          <TankList />
+        <Tank onClick={this.handleTankClick} count={10}>
+          {/*<TankList />*/}
         </Tank>
+        <Seller />
       </MainWrapper>
     );
   }
