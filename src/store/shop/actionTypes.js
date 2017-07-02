@@ -1,0 +1,3 @@
+export const COMPATIBLE = "COMPATIBLE";
+export const NOT_COMPATIBLE = "NOT_COMPATIBLE";
+export const SHOP_FLOADED = "SHOP_FLOADED";
