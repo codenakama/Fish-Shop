@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import autoBind from "react-autobind";
 import * as tankIcon from "../images/fish-bowl.svg";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const TankButton = styled.div`
   width: 3em;
@@ -50,5 +51,18 @@ class Tank extends Component {
     );
   }
 }
+
+Tank.propTypes = {
+  count: PropTypes.number,
+  /**
+  * Callback function to handle click
+  */
+  onClick: PropTypes.func
+};
+
+Tank.defaultProps = {
+  onClick: console.log("clicked"),
+  count: 0
+};
 
 export default Tank;
