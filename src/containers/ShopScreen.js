@@ -59,16 +59,16 @@ class ShopScreen extends Component {
   }
 
   render() {
-    const { fish } = this.props;
+    const { fish, fishInBasket, sellerState } = this.props;
     return (
       <MainWrapper>
         <h1>The Fishop</h1>
         <Link to="my-tank">
-          <Tank onClick={this.handleTankClick} count={10}>
+          <Tank onClick={this.handleTankClick} count={fishInBasket.length}>
             {/*<TankList />*/}
           </Tank>
         </Link>
-        <Seller />
+        <Seller face={sellerState} />
         <Wrapper style={{ textAlign: "right" }}>
           <Button>Buy Fish</Button>
         </Wrapper>
@@ -81,7 +81,9 @@ class ShopScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    fish: shopSelectors.getFishForSale(state)
+    fish: shopSelectors.getFishForSale(state),
+    fishInBasket: shopSelectors.getFishInBasket(state),
+    sellerState: shopSelectors.getSellerState(state)
   };
 }
 

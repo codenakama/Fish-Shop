@@ -48,14 +48,25 @@ const initialState = Immutable({
     "symphysodon",
     "torquigener"
   ],
-  fishInBasket: []
+  fishInBasket: [],
+  sellerState: "happy"
 });
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
     case types.COMPATIBLE:
       return state.merge({
-        fishInBasket: state.fishInBasket.concat(action.fish)
+        fishInBasket: state.fishInBasket.concat(action.fish),
+        sellerState: "happy"
+      });
+
+    case types.NOT_COMPATIBLE:
+      return state.merge({
+        sellerState: "worried"
+      });
+    case types.SHOP_FLOADED:
+      return state.merge({
+        sellerState: "worried"
       });
 
     default:
@@ -67,4 +78,12 @@ export default function reduce(state = initialState, action = {}) {
 
 export function getFishForSale(state) {
   return state.shop.fishForSale;
+}
+
+export function getFishInBasket(state) {
+  return state.shop.fishInBasket;
+}
+
+export function getSellerState(state) {
+  return state.shop.sellerState;
 }

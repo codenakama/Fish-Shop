@@ -7,7 +7,7 @@ const possibleResponses = [
 
 class ShopService {
   async checkCompatibility(basket, fishTank) {
-    var randNumber = Math.floor(Math.random() * 3 + 0);
+    var randNumber = Math.floor(Math.random() * 4);
     const response = possibleResponses[randNumber];
 
     if (!response.ok) {
@@ -16,7 +16,7 @@ class ShopService {
       );
     }
 
-    return responses[randNumber];
+    return response.canLiveTogether;
   }
 }
 
