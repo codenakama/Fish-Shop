@@ -54,7 +54,9 @@ class ShopScreen extends Component {
 
   handleTankClick() {}
 
-  handleFishClicked(fish) {}
+  handleFishClicked(fish) {
+    this.props.dispatch(shopActions.addFishToBasket(fish));
+  }
 
   render() {
     const { fish } = this.props;
