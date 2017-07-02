@@ -15,23 +15,18 @@ const Wrapper = styled.div`
 class Seller extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      messageWelcome:
-        "Hello. How can I help? We have some rare fish on display this week! " +
-        "I am here to help you make the right choices.",
-      messageError: "Error message here."
-    };
+    this.state = {};
   }
 
   render() {
-    const { face } = this.props;
+    const { face, message } = this.props;
     return (
       <Wrapper>
         {face === "happy" && <img alt="" src={man} />}
         {face === "worried" && <img alt="" src={manWorried} />}
 
-        <div id="speech-box">
-          {this.state.messageWelcome}
+        <div>
+          {message}
         </div>
       </Wrapper>
     );
@@ -43,7 +38,8 @@ Seller.propTypes = {
 };
 
 Seller.defaultProps = {
-  face: "happy"
+  face: "happy",
+  message: "Hello world"
 };
 
 export default Seller;
