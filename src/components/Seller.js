@@ -3,7 +3,8 @@ import autoBind from "react-autobind";
 import * as tankIcon from "../images/fish-bowl.svg";
 import styled from "styled-components";
 import man from "../images/man.svg";
-import manSad from "../images/man.svg";
+import manSad from "../images/man-worried.svg";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,9 +29,12 @@ class Seller extends Component {
   componentDidMount() {}
 
   render() {
+    const { face } = this.props;
     return (
       <Wrapper>
-        <img src={man} />
+        {face === "happy" && <img src={man} />}
+        {face === "worried" && <img src={manSad} />}
+
         <div id="speech-box">
           {this.state.messageOk}
         </div>
@@ -38,5 +42,13 @@ class Seller extends Component {
     );
   }
 }
+
+Seller.propTypes = {
+  face: PropTypes.oneOf(["happy", "worried"])
+};
+
+Seller.defaultProps = {
+  face: "happy"
+};
 
 export default Seller;
