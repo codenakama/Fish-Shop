@@ -8,14 +8,14 @@ This app is using:
 - Redux
 - React router
 
-##Development
+## Development
 
 ```sh
 npm install
 npm start
 ```
 
-##Build
+## Build
 
 ```sh
 npm install
