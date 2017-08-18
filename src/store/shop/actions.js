@@ -13,3 +13,10 @@ export function addFishToBasket(fish) {
     }
   };
 }
+
+export function buyFish() {
+  return async (dispatch, getstate) => {
+    try {
+    } catch (error) {}
+  };
+}
